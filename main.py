@@ -42,6 +42,9 @@ def hello_world():
 
 @app.route('/', methods=['POST'])
 def encrypt():
-    return 
+    text = request.form['text']
+    rot = request.form['rot']
+    res = rotate_string(text, rot)
+    return '<h1>'+ res +'</h1>'
 
 app.run(host='0.0.0.0', port=8080)
