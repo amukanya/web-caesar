@@ -45,7 +45,7 @@ def hello_world():
 def encrypt():
     text = request.form['text']
     rot = request.form['rot']
-    res = rotate_string(text, str(rot))
+    res = rotate_string(text, rot)
     return '<h1>'+ res +'</h1>'
 
-app.run(host='0.0.0.0', port=8080)
+app.run()
