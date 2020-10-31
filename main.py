@@ -16,11 +16,11 @@ form = """
                 font: 16px sans-serif;
                 border-radius: 10px;
             }
-            textarea {
+            textarea {{
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
+            }}
         </style>
     </head>
     <body>
@@ -29,7 +29,7 @@ form = """
         <input type="text" name="rot" value="0" />
         <p class="error"></p>
         </label>
-        <textarea name="text"></textarea>
+        <textarea name="text">{0}</textarea>
         <input type="submit" value="Encrypt Text" />
       </form>
     </body>
@@ -38,14 +38,14 @@ form = """
 #Rendering the form on this path/route
 @app.route('/')
 def hello_world():
-  return form
+  return form.format()
 
 #Adding new variables for requests and a method
 @app.route('/', methods=['POST'])
 def encrypt():
     text = request.form['text']
-    rot = request.form['rot']
+    rot = int(request.form['rot'])
     res = rotate_string(text, rot)
-    return '<h1>'+ res +'</h1>'
+    return form.format(res)
 
 app.run()
